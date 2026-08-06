@@ -8,6 +8,8 @@
 
     <SectionHowItWorks />
 
+    <SectionSponsors />
+
     <SectionCommunity />
 
     <SectionPress />

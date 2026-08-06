@@ -5,7 +5,6 @@
             <p class="section-subtitle">{{ t('home.sponsors.description') }}</p>
             <div class="partner-grid">
                 <a href="https://www.testmuai.com/" target="_blank" class="card partner-card">
-                    <span class="partner-type">{{ t('home.sponsors.infrastructure') }}</span>
                     <img src="/img/sponsors/TestMuAI_Logo.svg" alt="TestMu AI Logo" class="no-invert">
                 </a>
                 <a href="https://github.com/sponsors/Tienisto" target="_blank" class="card partner-card sponsor-cta">
