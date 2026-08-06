@@ -106,7 +106,7 @@ function handleClickOutside(event: MouseEvent) {
 }
 
 .nav-action-btn {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--subtle-bg);
     border: 1px solid var(--border-color);
     color: var(--text-main);
     padding: 8px 16px;
@@ -121,7 +121,7 @@ function handleClickOutside(event: MouseEvent) {
 }
 
 .nav-action-btn:hover, .nav-action-btn.active {
-    background: rgba(130, 213, 200, 0.1);
+    background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
     border-color: var(--accent-primary);
 }
 
@@ -168,7 +168,7 @@ function handleClickOutside(event: MouseEvent) {
     border: 1px solid var(--border-color);
     padding: 10px 10px 10px 40px;
     border-radius: 12px;
-    color: #FFFFFF;
+    color: var(--text-main);
     font-size: 0.85rem;
     box-sizing: border-box;
 }
@@ -186,7 +186,7 @@ function handleClickOutside(event: MouseEvent) {
 }
 
 .lang-list::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--border-color);
     border-radius: 10px;
 }
 
@@ -201,11 +201,11 @@ function handleClickOutside(event: MouseEvent) {
 }
 
 .lang-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--subtle-bg);
 }
 
 .lang-item.active {
-    background: rgba(130, 213, 200, 0.05);
+    background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
 }
 
 .lang-info {
@@ -216,7 +216,7 @@ function handleClickOutside(event: MouseEvent) {
 .lang-name {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #FFFFFF;
+    color: var(--text-main);
 }
 
 .lang-en-name {
