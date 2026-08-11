@@ -83,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { requestGithubAssets } from "~/utils/requestGithubAssets";
+import { downloadAssets } from "~/utils/downloadAssets";
 
 definePageMeta({
   title: "download.seo.title",
@@ -154,7 +154,7 @@ const nix = {
   ],
 };
 
-const assetsMap: Ref<{ [key: string]: string }> = ref({});
+const assetsMap = downloadAssets;
 const fallbackUrl = "https://github.com/localsend/localsend/releases";
 
 function applyLocaleUrl(url: string): string {
@@ -178,14 +178,14 @@ const recommendedDownloadUrl = computed((): string | undefined => {
   if (os === OS.ios) return appleStoreUrl;
   const ext = OS_TO_EXTENSION[os];
   if (!ext) return undefined;
-  const assetUrl = assetsMap.value[ext];
+  const assetUrl = assetsMap[ext];
   if (!assetUrl) return undefined;
   return applyLocaleUrl(assetUrl);
 });
 
 const downloadMetadata = computed<Record<OS, Download>>(() => {
   const downloadUrl = (extension: string) => {
-    const assetUrl = assetsMap.value[extension];
+    const assetUrl = assetsMap[extension];
     if (assetUrl) {
       return applyLocaleUrl(assetUrl);
     }
@@ -325,24 +325,8 @@ function copyToClipboard(text: string | string[]) {
   setTimeout(() => (copyToClipboardSnackbar.value = false), 3000);
 }
 
-onMounted(async () => {
+onMounted(() => {
   const os = (router.currentRoute.value.query.os?.toString() ?? '').toLowerCase();
   selectedOS.value = Object.values(OS).find((o) => o.toLowerCase() === os) ?? detectOS();
-
-  const assetsMetadata = await requestGithubAssets();
-  assetsMap.value = assetsMetadata.reduce<{ [key: string]: string }>(
-    (acc, asset) => {
-      const key = asset.name.split(".").pop();
-      if (!key) return acc;
-
-      if (key === "apk" && !asset.name.includes("arm64v8")) {
-        return acc;
-      }
-
-      acc[key] = asset.browser_download_url;
-      return acc;
-    },
-    {}
-  );
 });
 </script>
