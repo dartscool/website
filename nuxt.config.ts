@@ -59,6 +59,7 @@ export default defineNuxtConfig({
       redirectOn: "no prefix",
     },
     pages: {
+      "code-signing": false,
       privacy: false,
       terms: false,
       imprint: false,

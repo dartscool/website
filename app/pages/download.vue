@@ -70,6 +70,10 @@
                     </div>
                 </div>
             </div>
+
+            <p v-if="selectedOS === OS.windows" class="text-center text-muted" style="margin-top: 1.5rem">
+                <NuxtLink :to="localePath('/code-signing')" class="accent">{{ t('footer.codeSigningPolicy') }}</NuxtLink>
+            </p>
         </div>
     </section>
 
@@ -92,6 +96,7 @@ definePageMeta({
 
 const { t, locale } = useI18n();
 const router = useRouter();
+const localePath = useLocalePath();
 
 enum OS {
   windows = "Windows",

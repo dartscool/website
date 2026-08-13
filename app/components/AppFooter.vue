@@ -33,6 +33,7 @@
                         <h4>{{ t('footer.legal') }}</h4>
                         <ul>
                             <li><NuxtLink :to="localePath('/privacy')">{{ t('footer.privacy') }}</NuxtLink></li>
+                            <li><NuxtLink :to="localePath('/code-signing')">{{ t('footer.codeSigningPolicy') }}</NuxtLink></li>
                             <li><NuxtLink :to="localePath('/terms')">{{ t('footer.terms') }}</NuxtLink></li>
                             <li><NuxtLink :to="localePath('/imprint')">{{ t('footer.imprint') }}</NuxtLink></li>
                         </ul>
