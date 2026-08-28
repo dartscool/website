@@ -59,7 +59,7 @@
                             <template v-else-if="selectedOS === OS.ios || selectedOS === OS.android">
                                 <div class="qr-container text-center">
                                     <div class="card qr-card mb-4" style="display: inline-block; padding: 20px;">
-                                        <img :src="`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://localsend.org/download?os=${selectedOS.toLowerCase()}`" 
+                                        <img :src="qrCodeUrl"
                                             alt="QR Code" class="w-48 h-48" />
                                     </div>
                                     <h3 class="mb-2">{{ t('download.scanToInstall') }}</h3>
@@ -143,7 +143,7 @@ interface Download {
   packageManagers: PackageManager[];
 }
 
-const appleStoreUrl = "https://apps.apple.com/us/app/localsend/id1661733229";
+const appleStoreUrl = "https://apps.apple.com/app/id6792442118";
 const appleStore = `<a href="${appleStoreUrl}">
     <img alt="Download on the App Store" src="${new URL("~/assets/img/badges/apple-store-badge.svg", import.meta.url).href
   }" style="height: 52px">
@@ -186,6 +186,13 @@ const recommendedDownloadUrl = computed((): string | undefined => {
   const assetUrl = assetsMap[ext];
   if (!assetUrl) return undefined;
   return applyLocaleUrl(assetUrl);
+});
+
+const qrCodeUrl = computed(() => {
+  const installUrl = selectedOS.value === OS.ios
+    ? appleStoreUrl
+    : `https://localsend.org/download?os=${selectedOS.value?.toLowerCase() ?? ''}`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(installUrl)}`;
 });
 
 const downloadMetadata = computed<Record<OS, Download>>(() => {
