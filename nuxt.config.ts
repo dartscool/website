@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   css: ["~/assets/css/fonts.css", "~/assets/css/style.css"],
 
   site: {
-    url: "https://localsend.org",
+    url: "https://dartscool.com",
   },
 
   nitro: {
@@ -51,7 +51,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    baseUrl: "https://localsend.org",
+    baseUrl: "https://dartscool.com",
     strategy: "prefix_except_default",
     defaultLocale: "en",
     detectBrowserLanguage: {
