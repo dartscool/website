@@ -194,9 +194,7 @@ const recommendedDownloadUrl = computed((): string | undefined => {
 });
 
 const qrCodeUrl = computed(() => {
-  return selectedOS.value === OS.ios
-    ? "/img/download/ios-app-store-qr.png"
-    : "/img/download/android-apk-qr.png";
+  return "/img/download/downloads-qr.png";
 });
 
 const downloadMetadata = computed<Record<OS, Download>>(() => {
