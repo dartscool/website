@@ -34,6 +34,7 @@
                                     <a v-for="binary in downloadMetadata[selectedOS].binaries" 
                                         :key="binary.name" 
                                         :href="binary.url" 
+                                        :download="binary.download"
                                         class="card download-card">
                                         <span>{{ binary.name }}</span>
                                         <Icon name="material-symbols:download" class="app-icon" />
@@ -135,6 +136,7 @@ interface PackageManager {
 interface Binaries {
   name: string;
   url: string;
+  download?: string;
 }
 
 interface Download {
@@ -163,6 +165,9 @@ const assetsMap = downloadAssets;
 const fallbackUrl = "https://github.com/localsend/localsend/releases";
 
 function applyLocaleUrl(url: string): string {
+  if (url.startsWith("https://download.dartscool.com/")) {
+    return url;
+  }
   if (locale.value === 'zh-CN') {
     const fileName = url.split('/').pop();
     return `https://d.localsend.org/${fileName}`;
@@ -189,10 +194,9 @@ const recommendedDownloadUrl = computed((): string | undefined => {
 });
 
 const qrCodeUrl = computed(() => {
-  const installUrl = selectedOS.value === OS.ios
-    ? appleStoreUrl
-    : `https://localsend.org/download?os=${selectedOS.value?.toLowerCase() ?? ''}`;
-  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(installUrl)}`;
+  return selectedOS.value === OS.ios
+    ? "/img/download/ios-app-store-qr.png"
+    : "/img/download/android-apk-qr.png";
 });
 
 const downloadMetadata = computed<Record<OS, Download>>(() => {
@@ -284,6 +288,7 @@ const downloadMetadata = computed<Record<OS, Download>>(() => {
     },
     [OS.android]: {
       stores: [
+        /* Android store entries are disabled until DartsCool is officially listed.
         `<a href='https://play.google.com/store/apps/details?id=org.localsend.localsend_app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
           <img alt='Get it on Google Play'
                src="${new URL(
@@ -306,11 +311,13 @@ const downloadMetadata = computed<Record<OS, Download>>(() => {
         ).href
         }" style="height: 52px">
         </a>`,
+        */
       ],
       binaries: [
         {
           name: "APK",
           url: downloadUrl("apk"),
+          download: "DartsCool.apk",
         },
       ],
       packageManagers: [],
