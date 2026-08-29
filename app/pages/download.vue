@@ -165,7 +165,7 @@ const assetsMap = downloadAssets;
 const fallbackUrl = "https://github.com/localsend/localsend/releases";
 
 function applyLocaleUrl(url: string): string {
-  if (url.startsWith("https://download.dartscool.com/")) {
+  if (url.startsWith("https://dartscool.com/android/")) {
     return url;
   }
   if (locale.value === 'zh-CN') {

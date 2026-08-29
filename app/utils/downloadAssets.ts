@@ -9,5 +9,5 @@ export const downloadAssets: { [key: string]: string } = {
   gz: "https://github.com/localsend/localsend/releases/download/v1.18.2/LocalSend-1.18.2-linux-x86-64.tar.gz",
   deb: "https://github.com/localsend/localsend/releases/download/v1.18.2/LocalSend-1.18.2-linux-x86-64.deb",
   AppImage: "https://github.com/localsend/localsend/releases/download/v1.18.2/LocalSend-1.18.2-linux-x86-64.AppImage",
-  apk: "https://download.dartscool.com/android/latest/DartsCool.apk",
+  apk: "https://dartscool.com/android/latest/DartsCool.apk",
 };

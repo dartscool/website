@@ -73,7 +73,7 @@ type MobilePlatform = "ios" | "android" | "harmony";
 
 const downloadTargets = {
   ios: "https://apps.apple.com/cn/app/dartscool/id6792442118",
-  android: "https://download.dartscool.com/android/latest/DartsCool.apk",
+  android: "https://dartscool.com/android/latest/DartsCool.apk",
 } as const;
 
 const detectedPlatform = ref<MobilePlatform | null>(null);
