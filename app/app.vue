@@ -1,11 +1,14 @@
 <template>
   <NuxtLayout>
     <NuxtPage />
-    <AppFooter />
+    <AppFooter v-if="!isDownloadRedirect" />
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
+const isDownloadRedirect = computed(() => route.path.endsWith('/downloads'));
+
 useHead({
   script: [
     {
