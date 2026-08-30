@@ -1,5 +1,5 @@
 <template>
-  <main v-if="isWeChat" class="wechat-guide">
+  <main v-if="showWeChatAndroidGuide" class="wechat-guide">
     <div class="wechat-arrow" aria-hidden="true">↗</div>
     <h1>请在浏览器中打开</h1>
     <p>点击右上角 <strong>···</strong></p>
@@ -26,7 +26,7 @@ const downloadTargets: Record<MobilePlatform, string | null> = {
   harmony: null,
 };
 
-const isWeChat = ref(false);
+const showWeChatAndroidGuide = ref(false);
 
 function detectMobilePlatform(): MobilePlatform | null {
   const userAgent = navigator.userAgent;
@@ -40,10 +40,12 @@ function detectMobilePlatform(): MobilePlatform | null {
 }
 
 onMounted(() => {
-  isWeChat.value = /MicroMessenger/i.test(navigator.userAgent);
-  if (isWeChat.value) return;
-
   const platform = detectMobilePlatform();
+  showWeChatAndroidGuide.value =
+    platform === "android" && /MicroMessenger/i.test(navigator.userAgent);
+
+  if (showWeChatAndroidGuide.value) return;
+
   const target = platform ? downloadTargets[platform] : null;
 
   if (target) {
