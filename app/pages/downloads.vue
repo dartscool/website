@@ -1,5 +1,11 @@
 <template>
-  <div aria-hidden="true"></div>
+  <main v-if="isWeChat" class="wechat-guide">
+    <div class="wechat-arrow" aria-hidden="true">↗</div>
+    <h1>请在浏览器中打开</h1>
+    <p>点击右上角 <strong>···</strong></p>
+    <p>选择“在浏览器打开”后继续下载</p>
+  </main>
+  <div v-else aria-hidden="true"></div>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +26,8 @@ const downloadTargets: Record<MobilePlatform, string | null> = {
   harmony: null,
 };
 
+const isWeChat = ref(false);
+
 function detectMobilePlatform(): MobilePlatform | null {
   const userAgent = navigator.userAgent;
 
@@ -32,6 +40,9 @@ function detectMobilePlatform(): MobilePlatform | null {
 }
 
 onMounted(() => {
+  isWeChat.value = /MicroMessenger/i.test(navigator.userAgent);
+  if (isWeChat.value) return;
+
   const platform = detectMobilePlatform();
   const target = platform ? downloadTargets[platform] : null;
 
@@ -40,3 +51,38 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped>
+.wechat-guide {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #fff;
+  color: #111;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.wechat-guide h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.wechat-guide p {
+  margin: 0.25rem 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.wechat-arrow {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 3rem;
+  line-height: 1;
+  color: #07c160;
+}
+</style>
