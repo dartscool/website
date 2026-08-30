@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Download DARTSCOOL</title>
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #fff;
+    }
+
+    .wechat-guide {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 2rem;
+      color: #111;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .wechat-guide[hidden] {
+      display: none;
+    }
+
+    .wechat-guide h1 {
+      margin: 0 0 1rem;
+      font-size: 1.5rem;
+    }
+
+    .wechat-guide p {
+      margin: 0.25rem 0;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .wechat-arrow {
+      position: fixed;
+      top: 1rem;
+      right: 1.25rem;
+      color: #07c160;
+      font-size: 3rem;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <main id="wechat-guide" class="wechat-guide" hidden>
+    <div class="wechat-arrow" aria-hidden="true">↗</div>
+    <h1>请在浏览器中打开</h1>
+    <p>点击右上角 <strong>···</strong></p>
+    <p>选择“在浏览器打开”后继续下载</p>
+  </main>
+
+  <script>
+    (() => {
+      const userAgent = navigator.userAgent;
+      let platform = null;
+
+      if (/HarmonyOS|OpenHarmony|ArkWeb|HMOS/i.test(userAgent)) {
+        platform = "harmony";
+      } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+        platform = "ios";
+      } else if (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1) {
+        platform = "ios";
+      } else if (/Android/i.test(userAgent)) {
+        platform = "android";
+      }
+
+      if (platform === "android" && /MicroMessenger/i.test(userAgent)) {
+        document.getElementById("wechat-guide").hidden = false;
+        return;
+      }
+
+      const targets = {
+        ios: "https://apps.apple.com/cn/app/dartscool/id6792442118",
+        android: "https://dartscool.com/android/latest/DartsCool.apk",
+        // Add the HarmonyOS store URL here after the app is published.
+        harmony: null,
+      };
+
+      const target = platform ? targets[platform] : null;
+      if (target) window.location.replace(target);
+    })();
+  </script>
+</body>
+</html>
