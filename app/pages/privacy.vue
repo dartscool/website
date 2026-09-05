@@ -7,7 +7,7 @@
 
 <section v-if="isChinese" id="zh" aria-label="中文隐私政策">
 <h2>共同说明与平台差异</h2>
-<p>本政策统一说明 DartsCool 各平台应用的数据处理。应用由北京虎文软件有限公司提供，无需注册账号，核心计分在本地完成。我们不出售个人信息，不使用数据进行广告画像或跨应用追踪，不提供开发者运营的云端比赛历史或自动日志上传。平台功能尚在逐步对齐，以下内容以实际版本为准，不代表所有平台已经提供相同能力。</p>
+<p>本政策统一说明 DartsCool 各平台应用的数据处理。应用由北京夺镖体育文化有限公司提供，无需注册账号，核心计分在本地完成。我们不出售个人信息，不使用数据进行广告画像或跨应用追踪，不提供开发者运营的云端比赛历史或自动日志上传。平台功能尚在逐步对齐，以下内容以实际版本为准，不代表所有平台已经提供相同能力。</p>
 <p>各端会处理比赛设置、玩家昵称、分数及恢复状态；启用蓝牙功能时处理设备名称、标识及投镖数据。操作系统备份和迁移可能依用户系统设置保存部分本地数据，与开发者服务器上传不同。通过清除应用数据或卸载可删除本地数据；如需删除系统备份，请同时使用相应平台的备份管理功能。联系隐私事务请使用本页末尾邮箱。</p>
 <h2>Apple 平台（iOS、iPadOS 等）</h2>
 <p>通过系统 CoreBluetooth 连接飞镖盘，使用系统分配的外设标识。语音报分使用系统语音合成，不录音。启动后可在本地记录应用版本、系统与设备环境、比赛和蓝牙运行信息及错误详情，采用 Mars Xlog 本地日志组件及加密日志文件。该组件用于本地诊断，不是分析或广告服务。用户主动操作后通过系统分享或邮件导出日志，部分设备（如 Apple TV）不提供系统分享入口。日志与临时导出文件的保留及清理依该端实现和系统缓存管理，不适用下文鸿蒙的 7 天、128 段限制；可通过系统清除数据或卸载删除。分享前请确认接收方及附件内容。</p>
@@ -16,7 +16,7 @@
 <h2>微信小程序</h2>
 <p>比赛与设置通过小程序本地存储保存，蓝牙能力由微信提供并受其授权流程约束。微信平台自身的数据处理按其隐私政策执行；本小程序当前计分功能不要求向开发者提交姓名、手机号或账户资料。小程序没有原生应用的 Mars Xlog 诊断文件导出流程，不将原生端日志保留期限套用于小程序。可通过微信提供的存储管理清除本地数据。</p>
 <h2 id="harmony">HarmonyOS（鸿蒙）详细说明</h2>
-<p>DartsCool 鸿蒙版由<strong>北京虎文软件有限公司</strong>提供。本节说明鸿蒙应用在设备上处理哪些信息、为什么处理，以及你的选择。无需注册或登录即可使用。我们不会要求你提供真实姓名、手机号、邮箱或身份证明；玩家名称可使用昵称。</p>
+<p>DartsCool 鸿蒙版由<strong>北京夺镖体育文化有限公司</strong>提供。本节说明鸿蒙应用在设备上处理哪些信息、为什么处理，以及你的选择。无需注册或登录即可使用。我们不会要求你提供真实姓名、手机号、邮箱或身份证明；玩家名称可使用昵称。</p>
 <h2>1. 我们处理的信息与用途</h2>
 <ul>
   <li><strong>应用设置：</strong>语言、外观、声音与计分选项等，保存在应用私有存储，用于记住你的偏好。</li>
@@ -39,11 +39,11 @@
 <h2>6. 未成年人</h2>
 <p>未成年人应在监护人指导下阅读本政策并使用应用。我们不以识别或收集未成年人身份为目的。请使用昵称，避免在玩家名称或主动反馈中填写不必要的个人信息。监护人如有相关问题可联系我们。</p>
 <h2>7. 政策更新与联系</h2>
-<p>当功能、权限或数据处理方式发生实质变化时，我们将更新本政策并在需要时重新提示你确认。运营者：北京虎文软件有限公司。隐私问题、投诉及权利请求邮箱：<a href="mailto:bbc6bae9@gmail.com">bbc6bae9@gmail.com</a>。</p>
+<p>当功能、权限或数据处理方式发生实质变化时，我们将更新本政策并在需要时重新提示你确认。运营者：北京夺镖体育文化有限公司。隐私问题、投诉及权利请求邮箱：<a href="mailto:bbc6bae9@gmail.com">bbc6bae9@gmail.com</a>。</p>
 </section>
 <section v-else id="en" lang="en" aria-label="English privacy policy">
 <h2>Common terms and platform differences</h2>
-<p>This unified policy covers DartsCool apps provided by 北京虎文软件有限公司. Core scoring is local and requires no account. We do not sell personal information, use it for advertising profiles or cross-app tracking, or operate automatic diagnostic uploads or cloud match history. Features are being aligned across platforms; the following describes actual behavior, not a promise of feature parity. Apps process match settings, player nicknames, scores and recovery state; Bluetooth features process device names, identifiers and throws. System backup and migration may retain some local data according to your settings, separately from developer uploads. Clearing data or uninstalling removes local data; manage system backups separately.</p>
+<p>This unified policy covers DartsCool apps provided by Beijing Duobiao Sports Culture Co., Ltd.. Core scoring is local and requires no account. We do not sell personal information, use it for advertising profiles or cross-app tracking, or operate automatic diagnostic uploads or cloud match history. Features are being aligned across platforms; the following describes actual behavior, not a promise of feature parity. Apps process match settings, player nicknames, scores and recovery state; Bluetooth features process device names, identifiers and throws. System backup and migration may retain some local data according to your settings, separately from developer uploads. Clearing data or uninstalling removes local data; manage system backups separately.</p>
 <h2>Apple platforms</h2>
 <p>CoreBluetooth uses system-assigned peripheral identifiers. Score announcements use system speech synthesis, without recording audio. Local diagnostics may start at launch and include app version, OS and device environment, match and Bluetooth events and error details. Mars Xlog provides encrypted local diagnostic files, not analytics or advertising. Export requires a user action through system sharing or email; sharing is unavailable on some devices such as Apple TV. Retention and temporary-export cleanup follow that platform implementation and system cache management, not the HarmonyOS seven-day / 128-segment limit. Clear app data or uninstall to remove local files. Check recipients and attachments before sharing.</p>
 <h2>Android</h2>
@@ -52,7 +52,7 @@
 <p>Matches and settings use mini-program local storage. Bluetooth is provided by WeChat and follows its authorization flow. WeChat itself processes information under its own policy. Current scoring does not require names, phone numbers or account details to be submitted to the developer. The mini program does not provide native Mars Xlog file export; native log-retention rules do not apply. Use WeChat storage controls to clear local data.</p>
 <h2>HarmonyOS details</h2>
 <p class="meta">Effective and updated: September 5, 2026. The details below apply to the HarmonyOS app com.duobiao.dartscool.</p>
-<p>The app is provided by 北京虎文软件有限公司. No account or login is required. You need not provide your real name, phone number, email or identity documents. Player names may be nicknames.</p>
+<p>The app is provided by Beijing Duobiao Sports Culture Co., Ltd.. No account or login is required. You need not provide your real name, phone number, email or identity documents. Player names may be nicknames.</p>
 <h2>1. Information and purposes</h2>
 <ul>
   <li><strong>Settings:</strong> language, appearance, sound and scoring preferences are stored privately on your device to remember your choices.</li>
@@ -73,7 +73,7 @@
 <h2>6. Children</h2>
 <p>Minors should review this policy and use the app with a guardian's guidance. The app is not designed to identify children. Use nicknames and avoid unnecessary personal information in player names or voluntary feedback. Guardians may contact us with concerns.</p>
 <h2>7. Updates and contact</h2>
-<p>Material changes to features, permissions or processing will be reflected in this policy, with renewed notice and consent where needed. Operator: 北京虎文软件有限公司. Privacy questions, complaints and rights requests: <a href="mailto:bbc6bae9@gmail.com">bbc6bae9@gmail.com</a>.</p>
+<p>Material changes to features, permissions or processing will be reflected in this policy, with renewed notice and consent where needed. Operator: Beijing Duobiao Sports Culture Co., Ltd.. Privacy questions, complaints and rights requests: <a href="mailto:bbc6bae9@gmail.com">bbc6bae9@gmail.com</a>.</p>
 </section>
 
         </div>

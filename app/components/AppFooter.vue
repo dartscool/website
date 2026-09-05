@@ -4,8 +4,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <NuxtLink :to="localePath('/')" class="logo">
-                        <img src="/img/logo.png" alt="LocalSend Logo">
-                        <span>LocalSend</span>
+                        <img src="/img/logo.png" alt="DartsCool Logo">
+                        <span>DartsCool</span>
                     </NuxtLink>
                     <p>{{ t('footer.description') }}</p>
                 </div>

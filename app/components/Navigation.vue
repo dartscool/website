@@ -2,8 +2,8 @@
     <header class="navbar" :class="{ 'scrolled': isScrolled }">
         <nav class="container">
             <NuxtLink :to="localePath('/')" class="logo">
-                <img src="/img/logo.png" alt="LocalSend Logo">
-                <span>LocalSend</span>
+                <img src="/img/logo.png" alt="DartsCool Logo">
+                <span>DartsCool</span>
             </NuxtLink>
             
             <ul class="nav-links">
