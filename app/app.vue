@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <NuxtPage />
-    <AppFooter />
+    <AppFooter v-if="!useRoute().meta.hideGlobalFooter" />
   </NuxtLayout>
 </template>
 
