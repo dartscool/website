@@ -1,13 +1,13 @@
 <template>
   <div>
-    <header class="container"><NuxtLink to="/" aria-label="DartsCool 首页"><strong>DartsCool</strong></NuxtLink></header>
-    <PageHeader title="隐私政策 · Privacy Policy" description="DartsCool · 更新日期 / Updated: 2026-09-05" />
+    <header class="container"><NuxtLink to="/" :aria-label="isChinese ? 'DartsCool 首页' : 'DartsCool home'"><strong>DartsCool</strong></NuxtLink></header>
+    <PageHeader :title="isChinese ? '隐私政策' : 'Privacy Policy'" :description="isChinese ? '更新日期：2026-09-05' : 'Updated: September 5, 2026'" />
     <section class="legal section pt-0">
       <div class="container">
         <div class="card legal-content">
-          <nav aria-label="语言 / Languages"><a href="#zh">简体中文</a> · <a href="#en" lang="en">English</a></nav>
+          <nav :aria-label="isChinese ? '语言' : 'Language'"><a href="?lang=zh" @click.prevent="selectLanguage('zh')" :aria-current="isChinese ? 'true' : undefined">简体中文</a> · <a href="?lang=en" lang="en" @click.prevent="selectLanguage('en')" :aria-current="!isChinese ? 'true' : undefined">English</a></nav>
 
-<section id="zh" aria-label="中文隐私政策">
+<section v-if="isChinese" id="zh" aria-label="中文隐私政策">
 <h2>共同说明与平台差异</h2>
 <p>本政策统一说明 DartsCool 各平台应用的数据处理。应用由北京虎文软件有限公司提供，无需注册账号，核心计分在本地完成。我们不出售个人信息，不使用数据进行广告画像或跨应用追踪，不提供开发者运营的云端比赛历史或自动日志上传。平台功能尚在逐步对齐，以下内容以实际版本为准，不代表所有平台已经提供相同能力。</p>
 <p>各端会处理比赛设置、玩家昵称、分数及恢复状态；启用蓝牙功能时处理设备名称、标识及投镖数据。操作系统备份和迁移可能依用户系统设置保存部分本地数据，与开发者服务器上传不同。通过清除应用数据或卸载可删除本地数据；如需删除系统备份，请同时使用相应平台的备份管理功能。联系隐私事务请使用本页末尾邮箱。</p>
@@ -43,7 +43,7 @@
 <h2>7. 政策更新与联系</h2>
 <p>当功能、权限或数据处理方式发生实质变化时，我们将更新本政策并在需要时重新提示你确认。运营者：北京虎文软件有限公司。隐私问题、投诉及权利请求邮箱：<a href="mailto:bbc6bae9@gmail.com">bbc6bae9@gmail.com</a>。</p>
 </section>
-<section id="en" lang="en" aria-label="English privacy policy">
+<section v-else id="en" lang="en" aria-label="English privacy policy">
 <h2>Common terms and platform differences</h2>
 <p>This unified policy covers DartsCool apps provided by 北京虎文软件有限公司. Core scoring is local and requires no account. We do not sell personal information, use it for advertising profiles or cross-app tracking, or operate automatic diagnostic uploads or cloud match history. Features are being aligned across platforms; the following describes actual behavior, not a promise of feature parity. Apps process match settings, player nicknames, scores and recovery state; Bluetooth features process device names, identifiers and throws. System backup and migration may retain some local data according to your settings, separately from developer uploads. Clearing data or uninstalling removes local data; manage system backups separately.</p>
 <h2>Apple platforms</h2>
@@ -81,11 +81,30 @@
         </div>
       </div>
     </section>
-    <footer class="container section"><NuxtLink to="/">DartsCool 首页 / Home</NuxtLink> · <a href="mailto:bbc6bae9@gmail.com">隐私联系 / Privacy contact</a></footer>
+    <footer class="container section"><NuxtLink to="/">{{ isChinese ? 'DartsCool 首页' : 'DartsCool home' }}</NuxtLink> · <a href="mailto:bbc6bae9@gmail.com">{{ isChinese ? '隐私联系' : 'Privacy contact' }}</a></footer>
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ layout: false, hideGlobalFooter: true });
-useHead({ title: "DartsCool 隐私政策 · Privacy Policy" });
+const { locale } = useI18n();
+const route = useRoute();
+const languageCookie = useCookie<string>('i18n_redirected');
+const explicitLanguage = route.query.lang === 'zh' || route.query.lang === 'en' ? route.query.lang : undefined;
+// Static HTML and hydration must begin with the same language.
+const selectedLanguage = ref('en');
+const isChinese = computed(() => selectedLanguage.value.startsWith('zh'));
+onMounted(() => {
+  selectedLanguage.value = explicitLanguage || languageCookie.value || navigator.language || locale.value;
+});
+function selectLanguage(language: 'zh' | 'en') {
+  selectedLanguage.value = language;
+  const websiteLocale = language === 'zh' ? 'zh-CN' : 'en';
+  languageCookie.value = websiteLocale;
+  locale.value = websiteLocale;
+}
+useHead(() => ({
+  title: isChinese.value ? 'DartsCool 隐私政策' : 'DartsCool Privacy Policy',
+  htmlAttrs: { lang: isChinese.value ? 'zh-CN' : 'en' }
+}));
 </script>
