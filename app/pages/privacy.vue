@@ -1,11 +1,9 @@
 <template>
   <div>
-    <header class="container"><NuxtLink to="/" :aria-label="isChinese ? 'DartsCool 首页' : 'DartsCool home'"><strong>DartsCool</strong></NuxtLink></header>
     <PageHeader :title="isChinese ? '隐私政策' : 'Privacy Policy'" :description="isChinese ? '更新日期：2026-09-05' : 'Updated: September 5, 2026'" />
     <section class="legal section pt-0">
       <div class="container">
         <div class="card legal-content">
-          <nav :aria-label="isChinese ? '语言' : 'Language'"><a href="?lang=zh" @click.prevent="selectLanguage('zh')" :aria-current="isChinese ? 'true' : undefined">简体中文</a> · <a href="?lang=en" lang="en" @click.prevent="selectLanguage('en')" :aria-current="!isChinese ? 'true' : undefined">English</a></nav>
 
 <section v-if="isChinese" id="zh" aria-label="中文隐私政策">
 <h2>共同说明与平台差异</h2>
@@ -81,30 +79,23 @@
         </div>
       </div>
     </section>
-    <footer class="container section"><NuxtLink to="/">{{ isChinese ? 'DartsCool 首页' : 'DartsCool home' }}</NuxtLink> · <a href="mailto:bbc6bae9@gmail.com">{{ isChinese ? '隐私联系' : 'Privacy contact' }}</a></footer>
   </div>
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: false, hideGlobalFooter: true });
-const { locale } = useI18n();
+const { locale, setLocale, locales } = useI18n();
 const route = useRoute();
 const languageCookie = useCookie<string>('i18n_redirected');
-const explicitLanguage = route.query.lang === 'zh' || route.query.lang === 'en' ? route.query.lang : undefined;
-// Static HTML and hydration must begin with the same language.
-const selectedLanguage = ref('en');
-const isChinese = computed(() => selectedLanguage.value.startsWith('zh'));
+const isChinese = computed(() => locale.value.startsWith('zh'));
+// Keep existing app links working while using the site's shared locale routes.
 onMounted(() => {
-  selectedLanguage.value = explicitLanguage || languageCookie.value || navigator.language || locale.value;
+  const requested = route.query.lang === 'zh' ? 'zh-CN' : route.query.lang === 'en' ? 'en' : undefined;
+  const preferred = requested || (route.path === '/privacy' ? languageCookie.value : undefined);
+  if (preferred && preferred !== locale.value && locales.value.some(item => item.code === preferred)) {
+    setLocale(preferred);
+  }
 });
-function selectLanguage(language: 'zh' | 'en') {
-  selectedLanguage.value = language;
-  const websiteLocale = language === 'zh' ? 'zh-CN' : 'en';
-  languageCookie.value = websiteLocale;
-  locale.value = websiteLocale;
-}
 useHead(() => ({
-  title: isChinese.value ? 'DartsCool 隐私政策' : 'DartsCool Privacy Policy',
-  htmlAttrs: { lang: isChinese.value ? 'zh-CN' : 'en' }
+  title: isChinese.value ? 'DartsCool 隐私政策' : 'DartsCool Privacy Policy'
 }));
 </script>

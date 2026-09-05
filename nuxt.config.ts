@@ -60,7 +60,6 @@ export default defineNuxtConfig({
     },
     pages: {
       "code-signing": false,
-      privacy: false,
       terms: false,
       imprint: false,
       contact: false,
